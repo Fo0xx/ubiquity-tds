@@ -28,8 +28,23 @@ class MyAuth extends AuthController {
         if (isset($urlParts)) {
             $this->_forward(implode("/",$urlParts));
         } else {
+            USession::set('recentlyViewedProducts', []);
             UResponse::header('location','/home');
         }
+    }
+
+    #[Get(name:'login.direct')]
+    public function direct($name){
+        $name=urldecode($name);
+        $user = DAO::getOne(User::class, 'email=?', false, [$name]);
+        if($user) {
+            USession::set('idUser', $user->getId());
+            return $this->onConnect($user);
+        }
+        $this->_invalid=true;
+        $this->initializeAuth();
+        $this->onBadCreditentials ();
+        $this->finalizeAuth();
     }
 
     protected function _connect() {
