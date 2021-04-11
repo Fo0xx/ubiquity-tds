@@ -1,0 +1,119 @@
+<div class="ui grid">
+    <div class="column two wide"></div>
+
+    <div class="column eight wide">
+        <div class="couleur">
+            <fieldset>
+                <legend>&nbsp;Store&nbsp;</legend>
+                <div class="item">
+                    <a href="{{ path('order') }}" class="ui vertical animated black fluid button" data-target="#store-order" tabindex="0">
+                        <div class="hidden content">Access to my orders ...</div>
+                        <div class="visible content">
+                            <i class="boxes icon"></i> My orders ({{ numOrders }})
+                        </div>
+                    </a>
+                </div>
+
+                <div style="margin-top: 5px"></div>
+
+                <div class="item">
+                    <a href="{{ path('store') }}" class="ui vertical animated black fluid button" data-target="#store-browse" tabindex="0">
+                        <div class="hidden content">Go !</div>
+                        <div class="visible content">
+                            <i class="shop icon"></i>&nbsp;Browse the store
+                        </div>
+                    </a>
+                </div>
+            </fieldset>
+        </div>
+    </div>
+
+    <div class="column four wide">
+        <div class="couleur">
+            <fieldset>
+                <legend>&nbsp;Basket&nbsp;</legend>
+                <div class="item">
+                    <a href="{{ path('basket.new') }}" class="ui vertical animated green fluid button" data-target="#new-basket" tabindex="0">
+                        <div class="hidden content">Create a new basket ...</div>
+                        <div class="visible content">
+                            <i class="cart plus icon"></i>&nbsp;New ...
+                        </div>
+                    </a>
+                </div>
+
+                <div style="margin-top: 5px"></div>
+
+                <div class="item">
+                    <a href="{{ path('basket.myBaskets') }}" class="ui vertical animated black fluid button" data-target="#basket" tabindex="0">
+                        <div class="hidden content">Access to my baskets ...</div>
+                        <div class="visible content">
+                            <i class="shopping bag icon"></i>&nbsp;My baskets ({{ numBaskets }})
+                        </div>
+                    </a>
+                </div>
+            </fieldset>
+        </div>
+    </div>
+</div>
+
+<br>
+
+<div class="ui grid">
+    <div class="column two wide"></div>
+    <div class="column twelve wide">
+        <div class="couleur">
+            <fieldset>
+                <legend>&nbsp;Current promotions&nbsp;</legend>
+                <div class="ui horizontal list">
+                    {% for promo in produitsPromo %}
+                    <div class="item" style="text-align:center; width: 25%">
+                        <a href="{{path('product', [promo.section, promo.id])}}" data-target="#store-product" tabindex="0">
+                            <br>
+                            <img src="public/assets/img/{{promo.image}}.jpg" width="75%" alt="Promotion Image"/>
+                            <div class="content" style="font-size: 12px">
+                                <br>
+                                <div class="ui green label">{{promo.name}}</div>
+                                &nbsp;
+                                <div class="header">{{promo.promotion}} €</div>
+                                <div class="description label" style="font-size: smaller">{{promo.price}} €</div>
+                                <br>
+                            </div>
+                        </a>
+                    </div>
+                    {% endfor %}
+                </div>
+            </fieldset>
+        </div>
+    </div>
+</div>
+
+<br>
+
+<div class="ui grid">
+    <div class="column two wide"></div>
+    <div class="column twelve wide">
+        <div class="couleur">
+            <fieldset>
+                <legend>&nbsp;Recently viewed&nbsp;</legend>
+                <div class="ui horizontal list">
+                    {% for product in recentlyViewedProducts %}
+                    <div class="item" style="text-align:center;">
+                        <a href="{{path('product', [product.section, product.id])}}" data-target="#store-product" tabindex="0">
+                            <br>
+                            <img src="public/assets/img/{{product.image}}.jpg" width="75%" alt="Product Image" />
+                            <div class="content" style="font-size: 12px">
+                                <br>
+                                <div class="ui yellow label">{{product.name}}</div>
+                                &nbsp;
+                                <div class="header">{{product.price}} €</div>
+                                <div class="description label" style="font-size: smaller">{{product.promotion}} €</div>
+                                <br>
+                            </div>
+                        </a>
+                    </div>
+                    {% endfor %}
+                </div>
+            </fieldset>
+        </div>
+    </div>
+</div>

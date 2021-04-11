@@ -1,0 +1,45 @@
+* {
+	color: #dedede;
+}
+
+.description {
+	color: #dedede!important;
+}
+
+body{
+	background-color:#121212;
+	color: #dedede;
+}
+.head{
+	background-color: #ff0000;
+}
+
+.menu.links{
+	background-color: #F4FEFE!important;
+	padding: 10px 0;
+}
+
+.version{
+	background-color: #F4FEFE!important;
+	color: #1f1f1f!important;
+}
+
+.contour {
+	background-color: transparent !important;
+	color: #DEDEDE;
+	margin: 50px;
+	padding: 50px;
+}
+
+.couleur {
+	background-color: transparent !important;
+	margin: 5px;
+	padding: 5px;
+}
+
+.inverseCouleur {
+	background-color: #1f1f1f!important;
+	margin: 5px;
+	padding: 5px;
+	color: #F4FEFE!important;
+}

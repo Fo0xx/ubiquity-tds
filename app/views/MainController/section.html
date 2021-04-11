@@ -1,0 +1,75 @@
+<div class="ui grid">
+    <div class="column two wide"></div>
+
+    <div class="column four wide">
+        <div class="inverseCouleur">
+            <div class="ui celled list">
+                {% for sectionProduct in sections %}
+                <div class="item" style="padding: 2%; margin-left: 15%;">
+                    <a href="{{path('section',[sectionProduct.id])}}" data-target="#store-section" tabindex="0">
+                        <div class="fluid ui teal button">{{sectionProduct.name}}</div>
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <div class="column eight wide">
+        <div class="couleur">
+            <div class="ui middle aligned divided list">
+                <div class="item">
+                    <div class="right floated content">
+                        <a href="{{ path('store') }}" class="ui black button" data-target="#store-browse" tabindex="0">Store</a>
+                    </div>
+                    <div class="content">
+                        <h3>
+                            <br>
+                            {{section.name}}
+                        </h3>
+                        <div class="description" style="font-size: smaller">
+                            {{section.description}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="item">
+                <fieldset>
+                    <legend>&nbsp;Products&nbsp;</legend>
+                    <div class="ui horizontal list">
+                        {% for prod in products %}
+                        <div class="item" style="text-align:center; width: 20%">
+                            <a href="{{path('product', [section.id, prod.id])}}" data-target="#store-product" tabindex="0">
+                                <img src="public/assets/img/{{prod.image}}.jpg" width="75%" alt="Product Image"/>
+                                <div class="content" style="font-size: 10px">
+                                    <br>
+                                    <div class="ui green label">{{prod.name}}</div>
+                                    <br><br>
+                                    <div class="header">{{prod.price}} €</div>
+                                    <div class="description label" style="font-size: smaller">{{prod.promotion}} €</div>
+                                    <br>
+                                </div>
+                            </a>
+
+                            <a href="{{ path('addProduct', [prod.id]) }}" class="tiny ui animated olive button" data-target="#new-basket" tabindex="0">
+                                <div class="hidden content">Add</div>
+                                <div class="visible content">
+                                    <i class="icon cart arrow down"></i>
+                                </div>
+                            </a>
+
+                            <a href="{{ path('addProductTo',[prod.id, basket.id]) }}" class="tiny ui animated grey button" data-target="#new-basket" tabindex="0">
+                                <div class="hidden content">Other</div>
+                                <div class="visible content">
+                                    <i class="icon cart plus"></i>
+                                </div>
+                            </a>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </fieldset>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,91 @@
+<div class="ui grid">
+    <div class="column two wide"></div>
+    <div class="column twelve wide">
+        <div class="couleur">
+            <div class="ui items">
+                <div class="item">
+                    <div class="left floated content" style="text-align: center">
+                        <br>
+                        <i class="icon shopping bag"></i>Basket
+                        <br>
+                        <b style="color: darkorange">{{quantity}}</b>
+                        <i class="icon shopping basket"></i>
+                        <b style="color: darkorange">{{promo}} €</b>
+                    </div>
+                    <div class="right floated content" style="text-align: center">
+                        <br>
+                        <a href="{{ path('store') }}" class="ui black button" data-target="#store-browse" tabindex="0">Store</a>
+                    </div>
+                </div>
+            </div>
+
+            <fieldset>
+                <legend>&nbsp;Basket&nbsp;</legend>
+                <div class="ui items">
+                    <hr>
+                    {% for products in productsList %}
+                    <div class="item">
+                        <div class="image" style="width: 25%">
+                            <img src="public/assets/img/{{products.product.image}}.jpg" width="100%" alt="Product Image"/>
+                        </div>
+
+                        <div class="content">
+                            <br>
+                            <a class="header" href="{{path('product', [products.product.section, products.product.id])}}" data-target="#store-product" tabindex="0">
+                                {{products.product.name}}
+                            </a>
+                            <br><br>
+                            <div class="meta">
+                                <form id="frm-basket-quantity" class="ui form" name="frm-basket-quantity" method="post" action="{{ path('basket.quantity', [products.product.id]) }}">
+                                    <div class="field required">
+                                        <div class="ui input">
+                                                    <span>Quantity :
+                                                        <input id="basketQuantity" name="basketQuantity" type="number" max="100" min="1" value="{{products.quantity}}">
+                                                        <button type="submit" class="ui button basic ajax _connect floated">Update Quantity</button>
+                                                    </span>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="extra">
+                                Price : {{products.product.price}} €
+                                <br>
+                                {{products.product.promotion}} €
+                            </div>
+                            <br>
+                            <a href="{{ path('basket.clearOne', [products.product.id]) }}" class="ui mini red button" data-target="#basket-clearOne" tabindex="0"><i class="icon close"></i>&nbsp;Delete</a>
+                        </div>
+                    </div>
+                    <hr>
+                    {% endfor %}
+                    <div class="content" style="text-align: right">
+                        <br>
+                        <div style="font-size: smaller">
+                            Quantity : {{quantity}} products
+                            <br>
+                            Without promotion : {{prixTotal}} €
+                        </div>
+
+                        <h4 style="font-size: large">
+                            Total price : {{promo}} €
+                        </h4>
+                        <br>
+                    </div>
+                </div>
+
+                <div class="ui middle aligned divided list">
+                    <div class="item">
+                        <div class="left floated content">
+                            <a href="{{ path('basket.clear') }}" class="ui red button" data-target="#basket-clear" tabindex="0"><i class="icon trash alternate"></i>&nbsp;Delete All</a>
+                        </div>
+
+                        <div class="right floated content">
+                            <a href="{{ path('basket.validate') }}" class="ui green button" data-target="#basket-validate" tabindex="0">Next Step&nbsp;<i class="icon angle right"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+            </fieldset>
+        </div>
+    </div>
+</div>
